@@ -1,0 +1,18 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Python
+        run: python -m py_compile scripts/generate.py
+      - name: Validate CPU Compose
+        run: docker compose config
+      - name: Validate GPU Compose
+        run: docker compose -f compose.yaml -f compose.gpu.yaml config
+

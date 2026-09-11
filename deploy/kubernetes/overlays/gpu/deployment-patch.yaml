@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kokoro-tts
+  namespace: tts
+spec:
+  template:
+    spec:
+      runtimeClassName: nvidia
+      containers:
+        - name: kokoro
+          image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.6.0-cu126
+          resources:
+            requests:
+              cpu: "1"
+              memory: 4Gi
+              nvidia.com/gpu: "1"
+            limits:
+              cpu: "4"
+              memory: 8Gi
+              nvidia.com/gpu: "1"
+

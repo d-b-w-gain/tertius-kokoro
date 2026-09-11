@@ -1,0 +1,9 @@
+.env
+output/
+*.wav
+*.mp3
+*.flac
+*.opus
+*.sln24
+__pycache__/
+
